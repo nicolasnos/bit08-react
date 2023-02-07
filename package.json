@@ -1,6 +1,5 @@
 {
-  "homepage": "http://nicolasnos.github.io/todo-machine",
-  "name": "todo",
+  "name": "boneList",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
