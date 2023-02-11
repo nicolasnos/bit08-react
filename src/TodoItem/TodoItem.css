@@ -28,7 +28,6 @@
     width: 48px;
     font-size: 24px;
     font-weight: bold;
-    /* background-color: #CCC; */
   }
   
   .Icon-check {
@@ -46,4 +45,15 @@
   }
   .Icon-delete:hover {
     color: red;
+  }
+
+  .Icon-edit{
+    height: 35px;
+    width: 35px;
+    border: transparent;
+  }
+
+  .Icon-edit:hover {
+    background-color: #d2cf1e;
+
   }

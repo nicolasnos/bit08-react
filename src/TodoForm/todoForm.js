@@ -5,6 +5,8 @@ import "./todoForm.css";
 function TodoForm() {
   const [newTodoValue, setNewTodoValue] = React.useState("");
 
+  const [editTodo, setEditTodo] = React.useState("");
+
   const { addTodo, setOpenModal } = React.useContext(TodoContext);
 
   const onCancel = () => {
@@ -20,13 +22,16 @@ function TodoForm() {
     addTodo(newTodoValue);
     setOpenModal(false);
   };
+
+  const defaultPlaceHolder = "escribe el hueso a agregar";
+
   return (
     <form onSubmit={onSubmit}>
       <label>Almacen de huesos a estudiar</label>
       <textarea
-        value={newTodoValue}
+        value={newTodoValue || editTodo}
         onChange={onChange}
-        placeholder="escribe el hueso a agregar"
+        placeholder={defaultPlaceHolder}
       />
 
       <div className="TodoForm-buttonContainer">

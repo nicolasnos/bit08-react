@@ -7,6 +7,7 @@ import { TodoList } from "../TodoList/TodoList";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { Modal } from "../Modal";
 import { TodoForm } from "../TodoForm/todoForm";
+import { v4 as uuidv4 } from "uuid";
 
 function AppG() {
   const {
@@ -17,6 +18,9 @@ function AppG() {
     deleteTodo,
     openModal,
     setOpenModal,
+    editTodo,
+    editModal,
+    setEditModal,
   } = React.useContext(TodoContext);
   return (
     <React.Fragment>
@@ -30,11 +34,15 @@ function AppG() {
 
         {searchedTodos.map((todo) => (
           <TodoItem
-            key={todo.text}
+            key={uuidv4()}
+            id={uuidv4()}
             text={todo.text}
             completed={todo.completed}
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
+            onEdit={() => editTodo(todo.id)}
+            editModal={editModal}
+            setEditModal={setEditModal}
           />
         ))}
       </TodoList>
