@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useState } from "react";
-import { TodoContext } from "../TodoContext";
+import EditForm from "./EditForm";
 
 export const EditModal = (props) => {
-  const { editOpenModal, setEditOpenModal, addTodo, newTodoValue } =
+  /*   const { editOpenModal, setEditOpenModal, addTodo, newTodoValue } =
     React.useContext(TodoContext);
   const newId =
     (props.id, props.name, props.EditModal, props.totalTodos, props.saveTodos);
@@ -13,6 +12,7 @@ export const EditModal = (props) => {
 
   const onCancel = () => {
     setEditOpenModal(false);
+    console.log(editOpenModal);
   };
 
   const onChange = (event) => {
@@ -27,28 +27,19 @@ export const EditModal = (props) => {
     setEditOpenModal(false);
   };
 
+  const handleClose = (e) => {
+    e.preventDefault();
+  }; */
+
   const defaultPlaceHolder = "escribe el hueso a agregar";
 
   return ReactDOM.createPortal(
-    <div className="ModalBackground">
-      <form onSubmit={onSubmit}>
-        <label>Almacen de huesos a estudiar</label>
-        <textarea
-          value="hola"
-          onChange={onChange}
-          placeholder={defaultPlaceHolder}
-        />
-
-        <div className="TodoForm-buttonContainer">
-          <button type="button" onClick={onCancel} className="TodoForm-button">
-            cancelar
-          </button>
-          <button type="submit" className="TodoForm-button TodoForm-button-add">
-            Agregar hueso
-          </button>
-        </div>
-      </form>
-    </div>,
+    <EditForm
+      text={props.text}
+      setEditModal={props.setEditModal}
+      editOpenModal={props.editOpenModal}
+      id={props.id}
+    />,
     document.getElementById("editModal")
   );
 };

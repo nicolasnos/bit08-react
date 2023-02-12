@@ -8,6 +8,7 @@ function TodoItem(props) {
   const { editOpenModal, setEditOpenModal } = React.useContext(TodoContext);
   const openEditModal = () => {
     setEditOpenModal(!editOpenModal);
+    console.log(editOpenModal);
   };
 
   return (
@@ -21,7 +22,7 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-      <button className="Icon Icon-edit" onClick={openEditModal}>
+      <button className="Icon Icon-edit" onClick={props.onEdit}>
         {editOpenModal && (
           <EditModal
             text={props.text}

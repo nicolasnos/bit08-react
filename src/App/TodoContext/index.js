@@ -55,10 +55,10 @@ function TodoProvider(props) {
   };
 
   const editTodo = (id) => {
+    console.log(id);
     const oldTodoI = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
     console.log(newTodos[oldTodoI].text);
-    console.log(totalTodos);
   };
 
   return (
