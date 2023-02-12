@@ -34,12 +34,12 @@ function AppG() {
 
         {searchedTodos.map((todo) => (
           <TodoItem
-            key={uuidv4()}
-            id={uuidv4()}
+            key={todo.id}
+            id={todo.id}
             text={todo.text}
             completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
+            onComplete={() => completeTodo(todo.id)}
+            onDelete={() => deleteTodo(todo.id)}
             onEdit={() => editTodo(todo.id)}
             editModal={editModal}
             setEditModal={setEditModal}

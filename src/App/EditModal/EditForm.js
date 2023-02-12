@@ -16,23 +16,20 @@ const EditForm = (props) => {
   };
 
   const onChange = (event) => {
-    event.preventDefault();
+    event.stopPropagation();
     setBone(event.target.value);
     console.log(bone);
   };
 
   const onSubmit = (event) => {
-    event.preventDefault();
     addTodo(newTodoValue);
     setEditOpenModal(false);
+    console.log(editOpenModal);
   };
 
-  const handleClose = (e) => {
-    e.preventDefault();
-  };
   return (
     <div className="ModalBackground">
-      <form onSubmit={onSubmit} onClick={handleClose}>
+      <form onSubmit={onSubmit}>
         <label>Almacen de huesos a estudiar</label>
         <textarea
           value="hola"

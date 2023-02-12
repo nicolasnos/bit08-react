@@ -6,7 +6,7 @@ import { TodoContext } from "../App/TodoContext";
 
 function TodoItem(props) {
   const { editOpenModal, setEditOpenModal } = React.useContext(TodoContext);
-  const openEditModal = () => {
+  const openEditModal = (e) => {
     setEditOpenModal(!editOpenModal);
     console.log(editOpenModal);
   };
@@ -22,7 +22,7 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-      <button className="Icon Icon-edit" onClick={props.onEdit}>
+      <button className="Icon Icon-edit" onClick={openEditModal}>
         {editOpenModal && (
           <EditModal
             text={props.text}
