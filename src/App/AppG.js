@@ -7,7 +7,6 @@ import { TodoList } from "../TodoList/TodoList";
 import { TodoItem } from "../TodoItem/TodoItem";
 import { Modal } from "../Modal";
 import { TodoForm } from "../TodoForm/todoForm";
-import { v4 as uuidv4 } from "uuid";
 
 function AppG() {
   const {

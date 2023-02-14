@@ -5,10 +5,12 @@ import { EditModal } from "../App/EditModal/EditModal";
 import { TodoContext } from "../App/TodoContext";
 
 function TodoItem(props) {
-  const { editOpenModal, setEditOpenModal } = React.useContext(TodoContext);
-  const openEditModal = (e) => {
-    setEditOpenModal(!editOpenModal);
-    console.log(editOpenModal);
+  const { editOpenModal, setEditOpenModal, editTodo } =
+    React.useContext(TodoContext);
+
+  const onClickButton = () => {
+    setEditOpenModal(true);
+    editTodo(props.id);
   };
 
   return (
@@ -22,20 +24,13 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
-      <button className="Icon Icon-edit" onClick={openEditModal}>
-        {editOpenModal && (
-          <EditModal
-            text={props.text}
-            setEditModal={props.setEditModal}
-            editOpenModal={props.editOpenModal}
-            id={props.id}
-          />
-        )}
+      <button className="Icon Icon-edit" onClick={onClickButton}>
         <AiOutlineEdit />
       </button>
       <span className="Icon Icon-delete" onClick={props.onDelete}>
         X
       </span>
+      {editOpenModal && <EditModal id={props.id} text={props.text} />}
     </li>
   );
 }

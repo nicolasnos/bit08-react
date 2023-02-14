@@ -1,48 +1,46 @@
 import React from "react";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { TodoContext } from "../TodoContext";
 
-const EditForm = (props) => {
-  const { editOpenModal, setEditOpenModal, addTodo, newTodoValue } =
+const EditForm = () => {
+  const { setEditOpenModal, oldTodo, setOldTodo, todos, saveTodos } =
     React.useContext(TodoContext);
-  const newId =
-    (props.id, props.name, props.EditModal, props.totalTodos, props.saveTodos);
 
-  const [bone, setBone] = useState("");
+  const [newTodo, setNewTodo] = React.useState("");
 
   const onCancel = () => {
     setEditOpenModal(false);
-    console.log(editOpenModal);
   };
 
   const onChange = (event) => {
-    event.stopPropagation();
-    setBone(event.target.value);
-    console.log(bone);
+    setNewTodo({
+      completed: oldTodo.completed,
+      text: event.target.value,
+      id: uuidv4(),
+    });
   };
 
-  const onSubmit = (event) => {
-    addTodo(newTodoValue);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newTodos = [...todos];
+    newTodos.splice(oldTodo, 1, newTodo);
+    saveTodos(newTodos);
     setEditOpenModal(false);
-    console.log(editOpenModal);
   };
 
   return (
     <div className="ModalBackground">
       <form onSubmit={onSubmit}>
-        <label>Almacen de huesos a estudiar</label>
-        <textarea
-          value="hola"
-          onChange={onChange}
-          placeholder="edidanto hueso"
-        />
+        <label>Editando huesos</label>
+        <textarea onChange={onChange} placeholder={oldTodo.text} />
 
         <div className="TodoForm-buttonContainer">
           <button type="button" onClick={onCancel} className="TodoForm-button">
             cancelar
           </button>
           <button type="submit" className="TodoForm-button TodoForm-button-add">
-            Agregar hueso
+            Actualizar hueso
           </button>
         </div>
       </form>

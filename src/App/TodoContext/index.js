@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
 
@@ -15,6 +15,8 @@ function TodoProvider(props) {
   const [searchValue, setSearchValue] = React.useState("");
   const [openModal, setOpenModal] = React.useState(false);
   const [editOpenModal, setEditOpenModal] = React.useState(false);
+  const [oldTodo, setOldTodo] = React.useState(undefined);
+
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const totalTodos = todos.length;
 
@@ -55,10 +57,10 @@ function TodoProvider(props) {
   };
 
   const editTodo = (id) => {
-    console.log(id);
     const oldTodoI = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
-    console.log(newTodos[oldTodoI].text);
+    setOldTodo(newTodos[oldTodoI]);
+    saveTodos(newTodos);
   };
 
   return (
@@ -79,6 +81,10 @@ function TodoProvider(props) {
         editTodo,
         editOpenModal,
         setEditOpenModal,
+        todos,
+        saveTodos,
+        oldTodo,
+        setOldTodo,
       }}
     >
       {props.children}
@@ -92,4 +98,5 @@ export { TodoContext, TodoProvider };
 1. encuentro el objeto por id
 2. edito el name del objeto (tal vez con state)
 3. guardo el nuevo objeto en la lista
+4. pinto el nuevo objeto (como? )
 */
