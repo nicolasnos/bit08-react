@@ -15,7 +15,7 @@ const EditForm = () => {
 
   const onChange = (event) => {
     setNewTodo({
-      completed: oldTodo.completed,
+      completed: false,
       text: event.target.value,
       id: uuidv4(),
     });
@@ -25,6 +25,7 @@ const EditForm = () => {
     e.preventDefault();
     const newTodos = [...todos];
     newTodos.splice(oldTodo, 1, newTodo);
+    console.log(oldTodo);
     saveTodos(newTodos);
     setEditOpenModal(false);
   };

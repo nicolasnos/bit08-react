@@ -93,10 +93,3 @@ function TodoProvider(props) {
 }
 
 export { TodoContext, TodoProvider };
-
-/*
-1. encuentro el objeto por id
-2. edito el name del objeto (tal vez con state)
-3. guardo el nuevo objeto en la lista
-4. pinto el nuevo objeto (como? )
-*/
